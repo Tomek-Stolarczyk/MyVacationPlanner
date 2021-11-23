@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class VacationplannerConfig(AppConfig):
+class VacationPlannerFrontConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'VacationPlanner'
+    name = 'VacationPlannerFront'
