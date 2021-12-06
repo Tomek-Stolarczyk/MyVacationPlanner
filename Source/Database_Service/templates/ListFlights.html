@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        All Flights
+    </title>
+</head>
+<body>
+<div class="content">
+    <h1> Flights </h1>
+    <table>
+        <tr>
+            <th>FlightID</th>
+            <th>Date</th>
+            <th>AirportTo</th>
+            <th>AirportFrom</th>
+            <th>Price</th>
+        </tr>
+        {% for flight in flights %}
+        <tr>
+            <td>{{ flight.Flight.FlightID }}</td>
+            <td>{{ flight.Flight.Date }}</td>
+            <td>{{ flight.Flight.AirportTo }}</td>
+            <td>{{ flight.Flight.AirportFrom }}</td>
+            <td>{{ flight.Flight.Price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Search Results
+    </title>
+</head>
+<body>
+<div class="content">
+    <h1>Criteria</h1>
+        Starting from location: {{ search_criteria['From City'] }} <br>
+        Going to:               {{ search_criteria['Destination'] }}<br>
+        Starting from date:     {{ search_criteria['Depart Date'] }}<br>
+        Return date:            {{ search_criteria['Return Date'] }}<br>
+    <h1> Results </h1>
+    <table>
+    <tr>
+        {% for result in results[0].keys() %} 
+            <th>{{ result }}</th> 
+        {% endfor %}
+    </tr>
+    {% for result in results %}
+    <tr>
+        {% for key in result.keys() %}
+            <td>{{result[key]}}</td>
+        {% endfor %}
+    </tr>
+    <br>
+    {% endfor %}
+    </table>
+</div>
+</body>
+
+</html>

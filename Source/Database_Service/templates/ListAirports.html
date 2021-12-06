@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        All Airports
+    </title>
+</head>
+<body>
+<div class="content">
+    <h1> Airports </h1>
+    <table>
+        <tr>
+            <th>AirportID</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Continent</th>
+        </tr>
+        {% for airport in airports %}
+        <tr>
+            <td>{{ airport.Airport.AirportID }}</td>
+            <td>{{ airport.Airport.City }}</td>
+            <td>{{ airport.Airport.State }}</td>
+            <td>{{ airport.Airport.Country }}</td>
+            <td>{{ airport.Airport.Continent }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

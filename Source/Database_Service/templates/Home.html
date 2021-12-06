@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Vacation Planner</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <script>
+        var DestinationTypes = {"Country":{}, "Any":{}}
+        window.onload = function() {
+            var subjectSel = document.getElementById("Destination_Type");
+            for (var x in DestinationTypes) {
+                subjectSel.options[subjectSel.options.length] = new Option(x, x);
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div class="content">
+        <form action="/Results" method="POST">
+            From City: <input type="text" name="From City" id="From_City" value="Toronto">
+            Depart Date: <input type="date" name="Depart Date" id="Depart_Date" value='2021-12-20'>
+            Return Date:<input type="date" name="Return Date" id="Depart_Date" value='2021-12-25'>
+            Destination Type:
+            <select name="Destination Type" id="Destination_Type">
+                <option value="Continent" selected="selected">Continent</option>
+            </select>
+            Destination: <input type="text" name="Destination" id="Destination" value="North America">
+            <br>
+            <input type="submit" value="Query Skyscanner">
+            
+        </form>
+
+    </div>
+    </body>
+</html>

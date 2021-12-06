@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Destination Selection
+    </title>
+</head>
+<body>
+<div class="content">
+    <h1>Criteria</h1>
+        Starting from location: {{ search_criteria['From City'] }} <br>
+        Going to:               {{ search_criteria['Destination'] }}<br>
+        Starting from date:     {{ search_criteria['Depart Date'] }}<br>
+        Return date:            {{ search_criteria['Return Date'] }}<br>
+    <h1> Choose a {{destination_type}}: </h1>
+
+    {% for destination in destinations %}
+    <form method="post" action="/Results" class="inline">
+        <input type="hidden" name="From City" value= {{ search_criteria['From City'] }} >
+        <input type="hidden" name="Depart Date" value= {{ search_criteria['Depart Date'] }} >
+        <input type="hidden" name="Return Date" value= {{ search_criteria['Return Date'] }} >
+        <input type="hidden" name="Destination Type" value= "{{ destination_type }}" >
+
+        <button type="submit" name="Destination" value="{{ destination }}" class="link-button">
+            {{ destination }}
+        </button>
+    </form>
+    {% endfor %}
+
+</div>
+</body>
+
+</html>
