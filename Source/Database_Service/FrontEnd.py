@@ -20,5 +20,9 @@ def ListFlights():
 def SearchResults():
     return vp.SearchResults()
 
+@app.route('/Checkout', methods=['POST'])
+def Checkout():
+    return vp.Checkout()
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)

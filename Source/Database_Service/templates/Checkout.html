@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vacation Planner</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    </head>
+    <body>
+        <h1>Thank you for checking out. Enjoy your vacation</h1>
+        Bought {{tickets.__len__()}} tickets. <br>
+        {% for ticket in tickets %}
+            {{ticket.Flight.Price}}<br>
+        {% endfor %}
+        Total Price: ${{total_price}}
+
+    </body>
+</html>

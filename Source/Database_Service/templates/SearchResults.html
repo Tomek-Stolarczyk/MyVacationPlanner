@@ -7,29 +7,51 @@
     </title>
 </head>
 <body>
+<form action="/Checkout" method="POST">
 <div class="content">
     <h1>Criteria</h1>
         Starting from location: {{ search_criteria['From City'] }} <br>
         Going to:               {{ search_criteria['Destination'] }}<br>
         Starting from date:     {{ search_criteria['Depart Date'] }}<br>
         Return date:            {{ search_criteria['Return Date'] }}<br>
-    <h1> Results </h1>
+    <h1> Departures </h1>
     <table>
     <tr>
-        {% for result in results[0].keys() %} 
-            <th>{{ result }}</th> 
+        {% for result in results["Departures"][0].GetViewTableHeaders() %} 
+            <th>{{ result }}</th>
         {% endfor %}
+        <th>Purchase Ticket</th>
     </tr>
-    {% for result in results %}
+    {% for result in results["Departures"] %}
     <tr>
-        {% for key in result.keys() %}
-            <td>{{result[key]}}</td>
+        {% for key in result.GetViewTableRow() %}
+            <td>{{key}}</td>
         {% endfor %}
+        <td><input type="checkbox" name="Departure Ticket" value={{result.GetViewID()}}> </td>
     </tr>
-    <br>
     {% endfor %}
     </table>
+    <h1> Returns </h1>
+    <table>
+        <tr>
+            {% for result in results["Returns"][0].GetViewTableHeaders() %} 
+                <th>{{ result }}</th>
+            {% endfor %}
+            <th>Purchase Ticket</th>
+        </tr>
+        {% for result in results["Returns"] %}
+        <tr>
+            {% for key in result.GetViewTableRow() %}
+                <td>{{key}}</td>
+            {% endfor %}
+            <td><input type="checkbox" name="Return Ticket" value={{result.GetViewID()}}> </td>
+        </tr>
+        
+        {% endfor %}
+    </table>
 </div>
+<input type="submit" value="Buy Tickets">
+</form>
 </body>
 
 </html>

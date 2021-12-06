@@ -93,9 +93,13 @@ class PostgresDatabaseService(IDatabaseService):
     def GetAllFlights(self):
         return self.session.execute(select(Flight)).all()
 
-    def GetFlights(self, from_airport : str, to_airport : str, depature_date : str):
+    def GetFlights(self, from_airport : str, to_airport : str, departure_date : str, limit=10):
         statement = select(Flight).filter_by(AirportTo=to_airport, AirportFrom=from_airport)
-        return self.session.execute(select(Flight)).all()
+        return self.session.execute(statement).fetchmany(limit)
 
     def GetRandomAirport(self):
         return self.session.execute(select(Airport).order_by(func.random())).fetchone()
+
+    def GetFlightByID(self, flight_id):
+        statement = select(Flight).filter_by(FlightID=flight_id)
+        return self.session.execute(statement).all()
