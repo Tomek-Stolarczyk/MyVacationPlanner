@@ -14,15 +14,15 @@
         Going to:               {{ search_criteria['Destination'] }}<br>
         Starting from date:     {{ search_criteria['Depart Date'] }}<br>
         Return date:            {{ search_criteria['Return Date'] }}<br>
-    <h1> Departures </h1>
+    <h1> Round Trips </h1>
     <table>
     <tr>
-        {% for result in results["Departures"][0].GetViewTableHeaders() %} 
+        {% for result in results["Round Trip"][0].GetViewTableHeaders() %} 
             <th>{{ result }}</th>
         {% endfor %}
         <th>Purchase Ticket</th>
     </tr>
-    {% for result in results["Departures"] %}
+    {% for result in results["Round Trip"] %}
     <tr>
         {% for key in result.GetViewTableRow() %}
             <td>{{key}}</td>
@@ -30,24 +30,6 @@
         <td><input type="checkbox" name="Departure Ticket" value={{result.GetViewID()}}> </td>
     </tr>
     {% endfor %}
-    </table>
-    <h1> Returns </h1>
-    <table>
-        <tr>
-            {% for result in results["Returns"][0].GetViewTableHeaders() %} 
-                <th>{{ result }}</th>
-            {% endfor %}
-            <th>Purchase Ticket</th>
-        </tr>
-        {% for result in results["Returns"] %}
-        <tr>
-            {% for key in result.GetViewTableRow() %}
-                <td>{{key}}</td>
-            {% endfor %}
-            <td><input type="checkbox" name="Return Ticket" value={{result.GetViewID()}}> </td>
-        </tr>
-        
-        {% endfor %}
     </table>
 </div>
 <input type="submit" value="Buy Tickets">

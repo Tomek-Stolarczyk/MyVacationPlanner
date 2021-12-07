@@ -9,8 +9,9 @@
         <h1>Thank you for checking out. Enjoy your vacation</h1>
         Bought {{tickets.__len__()}} tickets. <br>
         {% for ticket in tickets %}
-            {{ticket.Flight.Price}}<br>
+            <a href="{{ticket.Flight.BookingLink}}">Book Flight</a>: {{ticket.Flight.Price}}<br>
         {% endfor %}
+        <br>
         Total Price: ${{total_price}}
 
     </body>

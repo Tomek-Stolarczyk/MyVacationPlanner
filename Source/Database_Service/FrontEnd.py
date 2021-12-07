@@ -4,6 +4,9 @@ from VacationPlannerFacade import VacationPlannerFacade
 app = Flask(__name__)
 vp = VacationPlannerFacade()
 
+# Flask here sets up the various routes between your browser and the internal api
+# All routes are forwarded to the vacationplannerfacade who will handle the requests
+
 @app.route('/', methods=['GET'])
 def HomePage():
     return vp.HomePage()

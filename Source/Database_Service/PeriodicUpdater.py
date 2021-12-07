@@ -5,21 +5,22 @@ from datetime import datetime, timedelta
 import random
 import json
 
+# Singleton access
 g_periodic_updater = None
-
-def GetPeriodicUpdater(flight_service : IFlightService, database_service : IDatabaseService):
-    global g_periodic_updater
-    if g_periodic_updater == None:
-        g_periodic_updater = PeriodicUpdater(flight_service, database_service)
-    return g_periodic_updater
 
 class PeriodicUpdater(threading.Thread):
     def __init__(self, flight_service : IFlightService, database_service : IDatabaseService):
         threading.Thread.__init__(self)
         self.__stopped = threading.Event()
-        self.__interval = 20
+        self.__interval = 180
         self.__flight_service = flight_service
         self.__database_service = database_service
+    
+    def GetPeriodicUpdater(flight_service : IFlightService, database_service : IDatabaseService):
+        global g_periodic_updater
+        if g_periodic_updater == None:
+            g_periodic_updater = PeriodicUpdater(flight_service, database_service)
+        return g_periodic_updater
 
     def stop(self):
         self.__stopped.set()
@@ -29,6 +30,9 @@ class PeriodicUpdater(threading.Thread):
             while not self.__stopped.wait(self.__interval):
                 self.LookForNewData()
 
+    # Every self.__interval seconds, call this function which will grab a random airport
+    # from the database and use the flight service to find connecting flights. When a 
+    # connecting flight reaches an airport we dont have in the database, add it.
     def LookForNewData(self):
         starting_airport = self.__database_service.GetRandomAirport().Airport.AirportID
         starting_day = datetime.now() + timedelta(days=random.randint(0,100))
@@ -44,6 +48,4 @@ class PeriodicUpdater(threading.Thread):
                 for raw_airport in airports['locations']:
                     self.__database_service.AddAirportFromRaw(raw_airport)
             self.__database_service.AddFlightFromRaw(raw_flight)
-        
-
-    
+           

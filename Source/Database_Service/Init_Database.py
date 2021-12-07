@@ -2,6 +2,10 @@ from DatabaseServices.Database_Schema import Flight, Airport, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+# This is a starter file used to clear out the database and reset it.
+# Useful for when the database schema changes
+
+
 db_user = 'root'
 db_pass = 'vacationplanner'
 db_name = db_user
@@ -705,5 +709,6 @@ def PopulateAirports():
         print("{\n %s }" % airport)
         session.commit()
 
+Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 PopulateAirports()

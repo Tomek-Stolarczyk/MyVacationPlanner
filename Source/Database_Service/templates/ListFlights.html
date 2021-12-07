@@ -16,6 +16,7 @@
             <th>AirportTo</th>
             <th>AirportFrom</th>
             <th>Price</th>
+            <th>Booking Link</th>
         </tr>
         {% for flight in flights %}
         <tr>
@@ -24,6 +25,7 @@
             <td>{{ flight.Flight.AirportTo }}</td>
             <td>{{ flight.Flight.AirportFrom }}</td>
             <td>{{ flight.Flight.Price }}</td>
+            <td><a href="{{flight.Flight.BookingLink}}">Booking Link</a></td>
         </tr>
         {% endfor %}
     </table>

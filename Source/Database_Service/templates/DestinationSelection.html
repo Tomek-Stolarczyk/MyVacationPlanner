@@ -16,9 +16,9 @@
 
     {% for destination in destinations %}
     <form method="post" action="/Results" class="inline">
-        <input type="hidden" name="From City" value= {{ search_criteria['From City'] }} >
-        <input type="hidden" name="Depart Date" value= {{ search_criteria['Depart Date'] }} >
-        <input type="hidden" name="Return Date" value= {{ search_criteria['Return Date'] }} >
+        <input type="hidden" name="From City" value="{{ search_criteria['From City'] }}">
+        <input type="hidden" name="Depart Date" value="{{ search_criteria['Depart Date'] }}">
+        <input type="hidden" name="Return Date" value="{{ search_criteria['Return Date'] }}">
         <input type="hidden" name="Destination Type" value= "{{ destination_type }}" >
 
         <button type="submit" name="Destination" value="{{ destination }}" class="link-button">

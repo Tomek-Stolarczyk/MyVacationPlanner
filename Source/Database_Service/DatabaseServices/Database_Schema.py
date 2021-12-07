@@ -1,15 +1,20 @@
-from sqlalchemy import Column, String, Date, Numeric
+from sqlalchemy import Column, String, DateTime, Numeric
 from sqlalchemy.ext.declarative import declarative_base
+
+# This is the schema that the database uses to communicate 
+# with the rest of the system. If you create an instance of
+# this class, you can manipulate the underlying database
 
 Base = declarative_base()
 class Flight(Base):
     __tablename__ = 'Flight'
 
     FlightID    = Column(String(100), primary_key=True)
-    Date        = Column(Date())
+    Date        = Column(DateTime())
     AirportTo   = Column(String(5))
     AirportFrom = Column(String(5))
     Price       = Column(Numeric(11,2))
+    BookingLink = Column(String(2000))
 
     def __repr__(self):
         return '<Flight %r>' % self.FlightID
